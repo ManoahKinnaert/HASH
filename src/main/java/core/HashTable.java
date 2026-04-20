@@ -3,11 +3,11 @@ package core;
 /*
  * A simple hashtable using linear probing.
  */
-public class HashTable<Key, Value> {
+public class HashTable<Key, Integer> {
 	
 	private int N;
 	private int M;
-	private SequentialSearchST<Key, Value>[] st;
+	private SequentialSearchST<Key, Integer>[] st;
 	
 	public HashTable() {
 		this(997);
@@ -17,9 +17,9 @@ public class HashTable<Key, Value> {
 	public HashTable(int M) {
 		// Create M linked lists
 		this.M = M;
-		st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[M];
+		st = (SequentialSearchST<Key, Integer>[]) new SequentialSearchST[M];
 		for (int i = 0; i < M; i++) {
-			st[i] = new SequentialSearchST<Key, Value>(null, null, true);
+			st[i] = new SequentialSearchST<Key, Integer>(null, 0, true);
 		}
 	}
 	
@@ -27,9 +27,9 @@ public class HashTable<Key, Value> {
 		return (key.hashCode() & 0x7fffffff) % M;
 	}
 	
-	public Value get(Key key) { return (Value) st[hash(key)].get(key); }
+	public int get(Key key) { return (int) st[hash(key)].get(key); }
 	
-	public void put(Key key, Value value) {
+	public void put(Key key, int value) {
 	}
 	
 	@SuppressWarnings("unused")

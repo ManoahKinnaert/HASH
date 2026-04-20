@@ -1,21 +1,21 @@
 package core;
 
-public class SequentialSearchST<Key, Value> {
+public class SequentialSearchST<Key, Integer> {
 
 	Key key;
-	Value val;
-	SequentialSearchST<Key, Value> next;
+	int val;
+	SequentialSearchST<Key, Integer> next;
 	boolean first;
 	
 	
-	public SequentialSearchST(Key key, Value val, boolean first) {
+	public SequentialSearchST(Key key, int val, boolean first) {
 		this.key = key;
 		this.val = val;
 		this.first = first;
 	}
 	
 	
-	public Value get(Key key) {
+	public int get(Key key) {
 		if (this.key != key) {
 			return next.get(key);
 		}
