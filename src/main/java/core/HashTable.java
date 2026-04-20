@@ -38,8 +38,9 @@ public class HashTable<Key, Integer> {
 	public int getN() {
 		return N;
 	}
-
-	public void setN(int n) {
-		N = n;
+	
+	// Return the load factor
+	public double getAlpha() {
+		return N / M;
 	}
 }
