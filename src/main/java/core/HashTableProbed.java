@@ -55,4 +55,8 @@ public class HashTableProbed<Key, Integer> {
                 return vals[i];
         return null;
     }
+
+    public double alpha() {
+        return N / M;
+    }
 }
