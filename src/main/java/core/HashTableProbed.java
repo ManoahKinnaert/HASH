@@ -1,5 +1,6 @@
 package core;
 
+import util.Counter;
 /*
 * A simple hash table that uses linear probing.
 */
@@ -9,18 +10,21 @@ public class HashTableProbed<Key, Integer> {
     private int M = 16;
     private Key[] keys;
     private Integer[] vals;
+    private Counter counter;
 
     @SuppressWarnings("unchecked")
     public HashTableProbed() {
         keys = (Key[]) new Object[M];
         vals = (Integer[]) new Object[M];
+        counter = new Counter();
     }
 
     @SuppressWarnings("unchecked")
-    public HashTableProbed(int cap) {
+    public HashTableProbed(int cap, Counter counter) {
         M = cap;
         keys = (Key[]) new Object[M];
         vals = (Integer[]) new Object[M];
+        this.counter = counter;
     }
 
     // Modular hash
@@ -30,7 +34,7 @@ public class HashTableProbed<Key, Integer> {
 
     private void resize(int cap) {
         HashTableProbed<Key, Integer> t;
-        t = new HashTableProbed<>(cap);
+        t = new HashTableProbed<>(cap, counter);
         for (int i = 0; i < M; i++)
             if (keys[i] != null)
                 t.put(keys[i], vals[i]);
