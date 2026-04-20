@@ -2,6 +2,8 @@ package hash;
 
 import java.util.Scanner;
 
+import experiments.*;
+
 public class Hash {
 	
 	public int getInt(String message) {
@@ -16,9 +18,9 @@ public class Hash {
 		Hash hash = new Hash();
 		int expNum = hash.getInt("Experiment number: ");
 		if (expNum == 1) {
-			System.out.println("Test");
+			new Hash1().run();
 		} else if (expNum == 2) {
-			System.out.println("Test2");
+			new Hash2().run();
 		} else {
 			System.out.println("Invalid experiment number!");
 		}
