@@ -1,5 +1,8 @@
 package core;
 
+/*
+* A simple hash table that uses linear probing.
+*/
 public class HashTableProbed<Key, Integer> {
     
     private int N;
@@ -13,12 +16,28 @@ public class HashTableProbed<Key, Integer> {
         vals = (Integer[]) new Object[M];
     }
 
+    @SuppressWarnings("unchecked")
+    public HashTableProbed(int cap) {
+        M = cap;
+        keys = (Key[]) new Object[M];
+        vals = (Integer[]) new Object[M];
+    }
+
     // Modular hash
     private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % M;
     }
 
-    private void resize(int max) {}
+    private void resize(int cap) {
+        HashTableProbed<Key, Integer> t;
+        t = new HashTableProbed<>(cap);
+        for (int i = 0; i < M; i++)
+            if (keys[i] != null)
+                t.put(keys[i], vals[i]);
+        keys = t.keys;
+        vals = t.vals;
+        M = t.M;
+    }
 
     public void put(Key key, Integer val) {
         if (N >= M / 2) resize(2 * M);
