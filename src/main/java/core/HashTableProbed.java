@@ -4,18 +4,18 @@ import util.Counter;
 /*
 * A simple hash table that uses linear probing.
 */
-public class HashTableProbed<Key, Integer> {
+public class HashTableProbed<Key, Value> {
     
     private int N;
     private int M = 16;
     private Key[] keys;
-    private Integer[] vals;
+    private Value[] vals;
     private Counter counter;
 
     @SuppressWarnings("unchecked")
     public HashTableProbed() {
         keys = (Key[]) new Object[M];
-        vals = (Integer[]) new Object[M];
+        vals = (Value[]) new Object[M];
         counter = new Counter();
     }
 
@@ -23,7 +23,7 @@ public class HashTableProbed<Key, Integer> {
     public HashTableProbed(int cap, Counter counter) {
         M = cap;
         keys = (Key[]) new Object[M];
-        vals = (Integer[]) new Object[M];
+        vals = (Value[]) new Object[M];
         this.counter = counter;
     }
 
@@ -33,7 +33,7 @@ public class HashTableProbed<Key, Integer> {
     }
 
     private void resize(int cap) {
-        HashTableProbed<Key, Integer> t;
+        HashTableProbed<Key, Value> t;
         t = new HashTableProbed<>(cap, counter);
         for (int i = 0; i < M; i++)
             if (keys[i] != null)
@@ -43,24 +43,29 @@ public class HashTableProbed<Key, Integer> {
         M = t.M;
     }
 
-    public void put(Key key, Integer val) {
+    public void put(Key key, Value val) {
         if (N >= M / 2) resize(2 * M);
         int i;
-        for (i = hash(key); keys[i] != null; i = (i + 1) % M) 
+        for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {vals[i] = val; return;}
+            counter.incrementMisses();
+        }
         keys[i] = key;
         vals[i] = val;
         N++;
     }
 
-    public Integer get(Key key) {
+    public Value get(Key key) {
         for (int i = hash(key); keys[i] != null; i = (i + 1) % M)
-            if (keys[i].equals(key))
+            if (keys[i].equals(key)) {
+                counter.incrementHits();
                 return vals[i];
+            }
+            counter.incrementMisses();
         return null;
     }
 
     public double alpha() {
-        return N / M;
+        return (double) N / M;
     }
 }

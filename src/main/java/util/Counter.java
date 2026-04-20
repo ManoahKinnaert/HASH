@@ -46,5 +46,7 @@ public class Counter {
     public void reset() {
         resetHits();
         resetMisses();
+        loadFactorsSearch.clear();
+        loadFactorsInsert.clear();
     }
 }

@@ -4,11 +4,11 @@ package core;
  * A simple hashtable using seperate chaining.
  * NOTE: it doesn't support removing a key value pair.
  */
-public class HashTableChained<Key, Integer> {
+public class HashTableChained<Key, Value> {
 	
 	private int N;
 	private int M;
-	private SequentialSearchST<Key, Integer>[] st;
+	private SequentialSearchST<Key, Value>[] st;
 	
 	public HashTableChained() {
 		this(997);
@@ -19,9 +19,9 @@ public class HashTableChained<Key, Integer> {
 		// Create M linked lists
 		this.M = M;
 		this.N = 0;
-		st = (SequentialSearchST<Key, Integer>[]) new SequentialSearchST[M];
+		st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[M];
 		for (int i = 0; i < M; i++) {
-			st[i] = new SequentialSearchST<Key, Integer>(null, 0, true);
+			st[i] = new SequentialSearchST<Key, Value>(null, 0, true);
 		}
 	}
 	

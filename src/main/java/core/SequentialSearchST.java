@@ -3,11 +3,11 @@ package core;
 /*
  * A simple linked list implementation
  */
-public class SequentialSearchST<Key, Integer> {
+public class SequentialSearchST<Key, Value> {
 
 	Key key;
 	int val;
-	SequentialSearchST<Key, Integer> next;
+	SequentialSearchST<Key, Value> next;
 	boolean first;
 	
 	
@@ -27,10 +27,10 @@ public class SequentialSearchST<Key, Integer> {
 	}
 	
 	public void put(Key key, int val) {
-		SequentialSearchST<Key, Integer> current = this;
+		SequentialSearchST<Key, Value> current = this;
 		while (current.next != null) {
 			current = current.next;
 		}
-		current.next = new SequentialSearchST<Key, Integer>(key, val, false);
+		current.next = new SequentialSearchST<Key, Value>(key, val, false);
 	}
 }
