@@ -1,21 +1,21 @@
 package core;
 
 /*
- * A simple hashtable using linear probing.
- * NOTE: it doesn't support removing a key value pair (yet).
+ * A simple hashtable using seperate chaining.
+ * NOTE: it doesn't support removing a key value pair.
  */
-public class HashTable<Key, Integer> {
+public class HashTableChained<Key, Integer> {
 	
 	private int N;
 	private int M;
 	private SequentialSearchST<Key, Integer>[] st;
 	
-	public HashTable() {
+	public HashTableChained() {
 		this(997);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public HashTable(int M) {
+	public HashTableChained(int M) {
 		// Create M linked lists
 		this.M = M;
 		this.N = 0;
