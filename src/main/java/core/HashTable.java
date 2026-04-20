@@ -2,6 +2,7 @@ package core;
 
 /*
  * A simple hashtable using linear probing.
+ * NOTE: it doesn't support removing a key value pair (yet).
  */
 public class HashTable<Key, Integer> {
 	
@@ -17,6 +18,7 @@ public class HashTable<Key, Integer> {
 	public HashTable(int M) {
 		// Create M linked lists
 		this.M = M;
+		this.N = 0;
 		st = (SequentialSearchST<Key, Integer>[]) new SequentialSearchST[M];
 		for (int i = 0; i < M; i++) {
 			st[i] = new SequentialSearchST<Key, Integer>(null, 0, true);
@@ -32,6 +34,7 @@ public class HashTable<Key, Integer> {
 	
 	public void put(Key key, int val) {
 		st[hash(key)].put(key, val);
+		N++;
 	}
 	
 	@SuppressWarnings("unused")
