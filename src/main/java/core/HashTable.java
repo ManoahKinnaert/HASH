@@ -23,13 +23,15 @@ public class HashTable<Key, Integer> {
 		}
 	}
 	
+	// Modular hash
 	private int hash(Key key) {
 		return (key.hashCode() & 0x7fffffff) % M;
 	}
 	
 	public int get(Key key) { return (int) st[hash(key)].get(key); }
 	
-	public void put(Key key, int value) {
+	public void put(Key key, int val) {
+		st[hash(key)].put(key, val);
 	}
 	
 	@SuppressWarnings("unused")

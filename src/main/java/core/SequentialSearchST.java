@@ -1,5 +1,8 @@
 package core;
 
+/*
+ * A simple linked list implementation
+ */
 public class SequentialSearchST<Key, Integer> {
 
 	Key key;
@@ -12,6 +15,7 @@ public class SequentialSearchST<Key, Integer> {
 		this.key = key;
 		this.val = val;
 		this.first = first;
+		this.next = null;
 	}
 	
 	
@@ -20,5 +24,13 @@ public class SequentialSearchST<Key, Integer> {
 			return next.get(key);
 		}
 		return val;
+	}
+	
+	public void put(Key key, int val) {
+		SequentialSearchST<Key, Integer> current = this;
+		while (current.next != null) {
+			current = current.next;
+		}
+		current.next = new SequentialSearchST<Key, Integer>(key, val, false);
 	}
 }
