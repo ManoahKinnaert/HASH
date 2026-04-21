@@ -68,4 +68,7 @@ public class HashTableProbed<Key, Value> {
     public double alpha() {
         return (double) N / M;
     }
+
+    public int getHits() { return counter.getSearchHits(); }
+    public int getMisses() { return counter.getSearchMisses(); }
 }
