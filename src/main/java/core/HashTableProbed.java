@@ -56,12 +56,13 @@ public class HashTableProbed<Key, Value> {
     }
 
     public Value get(Key key) {
-        for (int i = hash(key); keys[i] != null; i = (i + 1) % M)
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {
                 counter.incrementHits();
                 return vals[i];
             }
             counter.incrementMisses();
+        }
         return null;
     }
 
