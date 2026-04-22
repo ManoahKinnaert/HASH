@@ -70,6 +70,8 @@ public class HashTableProbed<Key, Value> {
         return (double) N / M;
     }
 
+    // Helpers for counting stuff
     public int getHits() { return counter.getSearchHits(); }
     public int getMisses() { return counter.getSearchMisses(); }
+    public void resetCounter() { counter.reset(); }
 }
