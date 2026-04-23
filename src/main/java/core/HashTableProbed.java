@@ -10,7 +10,6 @@ public class HashTableProbed<Key, Value> {
     private int M = 16;
     private Key[] keys;
     private Value[] vals;
-    private Counter counter;
 
     @SuppressWarnings("unchecked")
     public HashTableProbed() {
@@ -20,11 +19,10 @@ public class HashTableProbed<Key, Value> {
     }
 
     @SuppressWarnings("unchecked")
-    public HashTableProbed(int cap, Counter counter) {
+    public HashTableProbed(int cap) {
         M = cap;
         keys = (Key[]) new Object[M];
         vals = (Value[]) new Object[M];
-        this.counter = counter;
     }
 
     // Modular hash
@@ -34,7 +32,7 @@ public class HashTableProbed<Key, Value> {
 
     private void resize(int cap) {
         HashTableProbed<Key, Value> t;
-        t = new HashTableProbed<>(cap, counter);
+        t = new HashTableProbed<>(cap);
         for (int i = 0; i < M; i++)
             if (keys[i] != null)
                 t.put(keys[i], vals[i]);
@@ -48,7 +46,6 @@ public class HashTableProbed<Key, Value> {
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {vals[i] = val; return;}
-            counter.incrementMisses();
         }
         keys[i] = key;
         vals[i] = val;
@@ -58,10 +55,8 @@ public class HashTableProbed<Key, Value> {
     public Value get(Key key) {
         for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {
-                counter.incrementHits();
                 return vals[i];
             }
-            counter.incrementMisses();
         }
         return null;
     }
@@ -70,8 +65,14 @@ public class HashTableProbed<Key, Value> {
         return (double) N / M;
     }
 
-    // Helpers for counting stuff
-    public int getHits() { return counter.getSearchHits(); }
-    public int getMisses() { return counter.getSearchMisses(); }
-    public void resetCounter() { counter.reset(); }
+    public int getProbesForSearch(Key key) {
+        int probes = 1;
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) { return probes; }
+            probes++;
+        }
+        return probes;
+    }
+
+    public int size() { return N; }
 }
