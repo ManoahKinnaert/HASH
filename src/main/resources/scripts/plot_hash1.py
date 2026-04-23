@@ -16,7 +16,6 @@ def plot_findings(csv_path: str):
     df = pd.read_csv(csv_path)
 
     plt.figure(figsize=(10, 6))
-
     plt.plot(df['alpha'], df['measuredHit'], label='Measured Hit')
     plt.plot(df['alpha'], df['theoreticalHit'], '--', label='Theoretical Hit')
 
@@ -25,8 +24,8 @@ def plot_findings(csv_path: str):
 
     plt.xlabel('Load Factor α')
     plt.ylabel('Average Probes')
-    plt.title('Linear Probing Validation')
-
+    
+    plt.title('Linear Probing')
     plt.grid(True)
     plt.legend()
 

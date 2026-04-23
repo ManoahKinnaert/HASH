@@ -1,7 +1,6 @@
 package hash;
 
 import java.util.Scanner;
-
 import experiments.*;
 
 public class Hash {

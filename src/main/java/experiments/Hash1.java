@@ -5,6 +5,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
@@ -113,6 +114,7 @@ public class Hash1 {
             for (Measurement m : measurements) {
 
                 writer.printf(
+                        Locale.US,
                         "%.2f,%.5f,%.5f,%.5f,%.5f%n",
                         m.alpha,
                         m.hits,
@@ -120,7 +122,6 @@ public class Hash1 {
                         m.misses,
                         m.theoreticalMisses);
             }
-            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,6 +137,7 @@ public class Hash1 {
             System.out.println("Export failed, quitting now...");
         // Run the python script
         try {
+            // TODO: python3 os stuff
             String python = "python";
             String scriptPath = new File(
                     Objects.requireNonNull(
