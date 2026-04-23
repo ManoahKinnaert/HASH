@@ -78,6 +78,5 @@ public class Hash1 {
 
 	public void run() {
 		conduct();
-		System.out.println(measurements.toArray());
 	}
 }
