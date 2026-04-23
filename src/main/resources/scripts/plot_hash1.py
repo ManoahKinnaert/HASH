@@ -15,19 +15,25 @@ def check_input_file():
 def plot_findings(csv_path: str):
     df = pd.read_csv(csv_path)
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['alpha'], df['measuredHit'], label='Measured Hit')
-    plt.plot(df['alpha'], df['theoreticalHit'], '--', label='Theoretical Hit')
+    plt.style.use("ggplot")
+    fig, (ax1, ax2) = plt.subplots(1, 2)
 
-    plt.plot(df['alpha'], df['measuredMiss'], label='Measured Miss')
-    plt.plot(df['alpha'], df['theoreticalMiss'], '--', label='Theoretical Miss')
+    ax1.plot(df['alpha'], df['measuredHit'], label='Measured Hit')
+    ax1.plot(df['alpha'], df['theoreticalHit'], color='blue', label='Theoretical Hit')
 
-    plt.xlabel('Load Factor α')
-    plt.ylabel('Average Probes')
+    ax2.plot(df['alpha'], df['measuredMiss'], label='Measured Miss')
+    ax2.plot(df['alpha'], df['theoreticalMiss'], color='blue', label='Theoretical Miss')
+
+    ax1.set_xlabel('Load Factor α')
+    ax2.set_xlabel('Load Factor α')
+    ax1.set_ylabel('Average Probes')
+    ax2.set_ylabel('Average Probes')
+
+    ax1.set_title('Measured hits')
+    ax2.set_title('Measured misses')
     
-    plt.title('Linear Probing')
-    plt.grid(True)
-    plt.legend()
+    ax1.legend()
+    ax2.legend()
 
     plt.show()
 
