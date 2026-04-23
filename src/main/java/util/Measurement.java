@@ -1,17 +1,17 @@
 package util;
 
 public class Measurement {
-    double alpha;
-    double hits;
-    double misses;
+    public double alpha;
+    public double hits;
+    public double misses;
+    public double theoreticalHits;
+    public double theoreticalMisses;
 
-    public Measurement(double alpha, double hits, double misses) {
+    public Measurement(double alpha, double hits, double misses, double theoreticalHits, double theoreticalMisses) {
         this.alpha = alpha;
         this.hits = hits;
         this.misses = misses;
+        this.theoreticalHits = theoreticalHits;
+        this.theoreticalMisses = theoreticalMisses;
     }
-
-    public double getAlpha() { return alpha; }
-    public double getHits() { return hits; }
-    public double getMisses() { return misses; }
 }

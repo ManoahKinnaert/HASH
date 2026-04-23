@@ -1,5 +1,6 @@
 package experiments;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -53,7 +54,8 @@ public class Hash1 {
             }
 
             double measuredHit = (double) totalHitProbes / searchesPerAlpha;
-
+            double theoreticalHit = 0.5 * (1 + (1.0 / (1 - alpha)));
+           
 			// Measure misses
 			long totalMissProbes = 0;
             int missesDone = 0;
@@ -70,11 +72,35 @@ public class Hash1 {
             }
 
             double measuredMiss = (double) totalMissProbes / searchesPerAlpha;
+            double theoreticalMiss = 0.5 * (1 + (1.0 / ((1 - alpha) * (1 - alpha))));
 
 			// store the data
-			measurements.add(new Measurement(alpha, measuredHit, measuredMiss));
+			measurements.add(new Measurement(alpha, measuredHit, measuredMiss, theoreticalHit, theoreticalMiss));
 		}
 	}
+
+    // Export the findings to a basic temp text file for prossesing in python (plotting the results using matplotlib)
+    public void exportForPy() {
+        try (PrintWriter writer = new PrintWriter("hash1_results.csv")) {
+
+        writer.println("alpha,measuredHit,theoreticalHit,measuredMiss,theoreticalMiss");
+
+        for (Measurement m : measurements) {
+
+            writer.printf(
+                "%.2f,%.5f,%.5f,%.5f,%.5f%n",
+                m.alpha,
+                m.hits,
+                m.theoreticalHits,
+                m.misses,
+                m.theoreticalMisses
+            );
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }
 
 	public void run() {
 		conduct();
