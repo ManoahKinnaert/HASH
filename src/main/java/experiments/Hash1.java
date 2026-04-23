@@ -5,15 +5,21 @@ import java.util.HashSet;
 import java.util.Random;
 
 import core.HashTableProbed;
+import util.Measurement;
 
 public class Hash1 {
+
+	ArrayList<Measurement> measurements;
+
+	public Hash1() {
+		measurements = new ArrayList<Measurement>();
+	}
+
 	public void conduct() {
 		int tableSize = 100000;
         int searchesPerAlpha = 20000;
 
         Random random = new Random();
-
-        System.out.println("alpha,measuredHit,theoreticalHit,measuredMiss,theoreticalMiss");
 
         for (double alpha = 0.10; alpha <= 0.95; alpha += 0.05) {
 
@@ -24,7 +30,7 @@ public class Hash1 {
 
             int targetSize = (int) (alpha * tableSize);
 
-            // Fill in table upto 
+            // Fill in table 
             while (table.size() < targetSize) {
 
                 int value = random.nextInt(Integer.MAX_VALUE);
@@ -65,9 +71,13 @@ public class Hash1 {
 
             double measuredMiss = (double) totalMissProbes / searchesPerAlpha;
 
+			// store the data
+			measurements.add(new Measurement(alpha, measuredHit, measuredMiss));
 		}
 	}
 
 	public void run() {
+		conduct();
+		System.out.println(measurements.toArray());
 	}
 }
