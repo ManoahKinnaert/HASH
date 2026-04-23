@@ -102,7 +102,15 @@ public class Hash1 {
     }
     }
 
+    // First export the data
+    // Then start the plotting service (run python script)
+    public void runPlot() {
+        exportForPy();
+        // TODO: run python script
+    }
+
 	public void run() {
 		conduct();
+        runPlot();
 	}
 }
