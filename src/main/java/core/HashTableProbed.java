@@ -1,6 +1,5 @@
 package core;
 
-import util.Counter;
 /*
 * A simple hash table that uses linear probing.
 */
@@ -15,7 +14,6 @@ public class HashTableProbed<Key, Value> {
     public HashTableProbed() {
         keys = (Key[]) new Object[M];
         vals = (Value[]) new Object[M];
-        counter = new Counter();
     }
 
     @SuppressWarnings("unchecked")
