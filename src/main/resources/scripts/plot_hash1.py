@@ -20,9 +20,11 @@ def plot_findings(csv_path: str):
 
     ax1.scatter(df['alpha'], df['measuredHit'], label='Measured Hit')
     ax1.plot(df['alpha'], df['theoreticalHit'], color='blue', label='Theoretical Hit')
+    ax1.plot(df['alpha'], [i / len(df['theoreticalHit']) for i in df['theoreticalHit']], color='orange')
 
     ax2.scatter(df['alpha'], df['measuredMiss'], label='Measured Miss')
     ax2.plot(df['alpha'], df['theoreticalMiss'], color='blue', label='Theoretical Miss')
+    ax2.plot(df['alpha'], [i / len(df['theoreticalMiss']) for i in df['theoreticalMiss']], color='orange')
 
     ax1.set_xlabel('Load Factor α')
     ax2.set_xlabel('Load Factor α')
