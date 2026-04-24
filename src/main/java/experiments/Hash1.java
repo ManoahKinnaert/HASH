@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import core.HashTableProbed;
+import util.InputUtil;
 import util.Measurement;
 
 public class Hash1 {
@@ -174,7 +175,8 @@ public class Hash1 {
     }
 
     public void run() {
-        conduct(true);
-        runPlot(true);
+        String option = InputUtil.getString("Do you want autoresize (y/n): ");
+        conduct(option.toLowerCase() == "y");
+        runPlot(option.toLowerCase() == "n");
     }
 }

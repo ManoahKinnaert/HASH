@@ -1,5 +1,6 @@
 package util;
 
+import java.io.Console;
 import java.util.Scanner;
 
 public class InputUtil {
@@ -10,4 +11,10 @@ public class InputUtil {
 		in.close();
 		return result;
 	}
+
+    public static String getString(String message) {
+        Console console = System.console();
+        String s = console.readLine(message);
+        return s;
+    }
 }
