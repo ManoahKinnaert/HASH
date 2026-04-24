@@ -10,7 +10,7 @@
     pdfpagemode=FullScreen,
     }
 \urlstyle{same}
-\title{HASH1: Hashtabel search-hits en misses}
+\title{HASH1: Hashtabel search hits en misses}
 \author{Manoah Kinnaert}
 \begin{document}
 
@@ -19,12 +19,32 @@
 \end{titlepage}
 \pagebreak
 \section{Korte inleiding}
+In dit verslag trachten we beide formules voor het gemiddeld aantal search hits en misses van hashtabellen die gebruik
+maken van lineaire probing experimenteel te valideren. We proberen ook te evalueren of deze formules een goede inschatting geven van het gemiddelde aantal search hits en search misses.
+Alle code die gebruikt is voor dit experiment is hier te vinden: \\\ 
+\url{https://github.com/ManoahKinnaert/HASH}.
+
+\section{Verloop van het experiment}
+Voor het uitvoeren van het experiment is er gekozen om te werken met hashtabellen met grootte 100000. We voeren meerdere individuele metingen uit 
+waarbij we telkens een nieuwe lege tabel initializeren en deze vullen tot een bepaalde load factor bereikt is. In ons geval doen we dit voor een load factor van 0.10 tot en met 
+een load factor van 0.90 waarbij we telkens (voor iedere nieuwe meting) de load factor laten stijgen met 0.05. Nadat deze hashtabel dan gevuld is meten we hits door het aantal hitprobes te tellen.
+We doen dit 20000 keer per load factor en nemen dan het gemiddelde immers de te valideren formules over gemiddelden gaan. Het aantal misses wordt ook 20000 keer per load factor bepaald en hier wordt dan ook een gemiddelde voor genomen.
+Na de meting(en) plotten we deze datapunten en vergelijken we ze met de theoretische curves om dan onze conclusies te trekken. Aangezien de implementatie in Java gemaakt is en ik 
+vooral bekend ben met de matplotlib module in python, exporteer ik eerst de meetpunten naar een CSV bestand. Vanuit Java wordt er dan een python scriptje gestart dat dit CSV bestand inleest en de gegevens zal plotten.
+
+\section{Data plotten}
+Voor het weergeven van de data in de grafieken is er gekozen voor lineair geschaalde assen. Er werd geen voordeel verwacht voor het gebruikt van bv een log log plot.
+Lineair geschaalde assen zouden perfect moeten volstaan om de nauwkeurigheid van beide formules te valideren en eventuele afwijkingen die zich zouden voordoen als de load factor groter en groter wordt waar te nemen.
+
+\section{Verwachtinen}
+Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curve zou moeten samenvallen met onze meetpunten. 
+Maar we verwachten dit enkel maar tot een load factor van 1 / 2. TODO: Extra uitleg hier 
 
 \section{Bevindingen}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../../images/hash1/chart.png}
-    \caption{Hashtabel searh-hits en search-misses (indien niet duidelijk genoeg zie git repo)}
+    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart.png}
+    \caption{Hashtabel searh hits en search misses (indien niet duidelijk genoeg zie git repo)}
     \label{fig:heap_insert_1}
 \end{figure}
 
