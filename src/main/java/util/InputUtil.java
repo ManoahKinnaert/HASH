@@ -4,11 +4,12 @@ import java.io.Console;
 import java.util.Scanner;
 
 public class InputUtil {
+
+    public static final Scanner scanner = new Scanner(System.in);
+
     public static int getInt(String message) {
 		System.out.println(message);
-		Scanner in = new Scanner(System.in);
-		int result = in.nextInt();
-		in.close();
+		int result = scanner.nextInt();
 		return result;
 	}
 
