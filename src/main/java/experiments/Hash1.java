@@ -14,13 +14,19 @@ import util.Measurement;
 
 public class Hash1 {
 
-    ArrayList<Measurement> measurements;
+    ArrayList<Measurement> measurements1;
+    ArrayList<Measurement> measurements2;
 
     public Hash1() {
-        measurements = new ArrayList<Measurement>();
+        measurements1 = new ArrayList<Measurement>();
+        measurements2 = new ArrayList<Measurement>();
     }
 
-    public void conduct() {
+    public void conductNoAutoresize() {
+
+    }
+
+    public void conduct(boolean autoResize) {
         int tableSize = 100000;
         int searchesPerAlpha = 20000;
 
@@ -43,7 +49,7 @@ public class Hash1 {
                 if (!inserted.contains(value)) {
                     inserted.add(value);
                     insertedList.add(value);
-                    table.put(value, value);
+                    table.put(value, value, autoResize);
                 }
             }
 
@@ -79,7 +85,7 @@ public class Hash1 {
             double theoreticalMiss = 0.5 * (1 + (1.0 / ((1 - alpha) * (1 - alpha))));
 
             // store the data
-            measurements.add(new Measurement(alpha, measuredHit, measuredMiss, theoreticalHit, theoreticalMiss));
+            measurements1.add(new Measurement(alpha, measuredHit, measuredMiss, theoreticalHit, theoreticalMiss));
         }
         System.out.println("[DEBUG]: Completed measurements.");
     }
@@ -113,7 +119,7 @@ public class Hash1 {
 
             writer.println("alpha,measuredHit,theoreticalHit,measuredMiss,theoreticalMiss");
 
-            for (Measurement m : measurements) {
+            for (Measurement m : measurements1) {
 
                 writer.printf(
                         Locale.US,
@@ -166,7 +172,7 @@ public class Hash1 {
     }
 
     public void run() {
-        conduct();
+        conduct(true);
         runPlot();
     }
 }

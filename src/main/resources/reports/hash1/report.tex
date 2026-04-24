@@ -36,16 +36,25 @@ vooral bekend ben met de matplotlib module in python, exporteer ik eerst de meet
 Voor het weergeven van de data in de grafieken is er gekozen voor lineair geschaalde assen. Er werd geen voordeel verwacht voor het gebruikt van bv een log log plot.
 Lineair geschaalde assen zouden perfect moeten volstaan om de nauwkeurigheid van beide formules te valideren en eventuele afwijkingen die zich zouden voordoen als de load factor groter en groter wordt waar te nemen.
 
-\section{Verwachtinen}
-Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curve zou moeten samenvallen met onze meetpunten. 
-Maar we verwachten dit enkel maar tot een load factor van 1 / 2. TODO: Extra uitleg hier 
+\section{Verwachtingen}
+Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curve zou moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
+Maar we verwachten dit enkel maar tot een load factor van 0.5. TODO: Extra uitleg hier.
 
 \section{Bevindingen}
+Voor het gemiddelde aantal search hits zien we dat de theoretische curve tot en met een load factor van 0.5 lijkt samen te vallen met onze bevindingen.
+Het nauwlettende oog ziet echter als we wat zouden inzoomen dat onze bevindingen lijken te oscileren rond de theoretische curve.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart.png}
-    \caption{Hashtabel searh hits en search misses (indien niet duidelijk genoeg zie git repo)}
-    \label{fig:heap_insert_1}
+    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_norehash.png}
+    \caption{Hashtabel searh hits en search misses zonder resize bij loadfactor groter dan 0.5 (indien niet duidelijk genoeg zie git repo)}
+    \label{fig:hash_norehash}
+    \space
+    \centering
+    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_rehash.png}
+    \caption{Hashtabel searh hits en search misses met resize bij loadfactor groter dan 0.5 (indien niet duidelijk genoeg zie git repo)}
+    \label{fig:hash_rehash}
+
 \end{figure}
 
+\section{Wat als...}
 \end{document}

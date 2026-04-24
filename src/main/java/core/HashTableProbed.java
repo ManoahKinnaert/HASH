@@ -33,14 +33,14 @@ public class HashTableProbed<Key, Value> {
         t = new HashTableProbed<>(cap);
         for (int i = 0; i < M; i++)
             if (keys[i] != null)
-                t.put(keys[i], vals[i]);
+                t.put(keys[i], vals[i], true);
         keys = t.keys;
         vals = t.vals;
         M = t.M;
     }
 
-    public void put(Key key, Value val) {
-        if (N >= M / 2) resize(2 * M);
+    public void put(Key key, Value val, boolean autoResize) {
+        if (N >= M / 2 && autoResize) resize(2 * M);
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {vals[i] = val; return;}
