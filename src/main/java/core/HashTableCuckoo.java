@@ -13,4 +13,11 @@ public class HashTableCuckoo<Key, Value> {
     public int size() {
         return N;
     }
+
+    public void put(Key key, Value val) {
+    }
+
+    public Value get(Key key) {
+		return null;
+    }    
 }
