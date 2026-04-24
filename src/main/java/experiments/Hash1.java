@@ -172,7 +172,7 @@ public class Hash1 {
     }
 
     public void run() {
-        conduct(true);
+        conduct(false);
         runPlot();
     }
 }

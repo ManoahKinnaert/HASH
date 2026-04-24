@@ -18,10 +18,10 @@ def plot_findings(csv_path: str):
     plt.style.use("ggplot")
     fig, (ax1, ax2) = plt.subplots(1, 2)
 
-    ax1.plot(df['alpha'], df['measuredHit'], label='Measured Hit')
+    ax1.scatter(df['alpha'], df['measuredHit'], label='Measured Hit')
     ax1.plot(df['alpha'], df['theoreticalHit'], color='blue', label='Theoretical Hit')
 
-    ax2.plot(df['alpha'], df['measuredMiss'], label='Measured Miss')
+    ax2.scatter(df['alpha'], df['measuredMiss'], label='Measured Miss')
     ax2.plot(df['alpha'], df['theoreticalMiss'], color='blue', label='Theoretical Miss')
 
     ax1.set_xlabel('Load Factor α')

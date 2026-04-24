@@ -37,12 +37,17 @@ Voor het weergeven van de data in de grafieken is er gekozen voor lineair gescha
 Lineair geschaalde assen zouden perfect moeten volstaan om de nauwkeurigheid van beide formules te valideren en eventuele afwijkingen die zich zouden voordoen als de load factor groter en groter wordt waar te nemen.
 
 \section{Verwachtingen}
-Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curve zou moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
+Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curves zouden moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
+Voor het gemiddelde aantal search hits verwachten we ongeveer \begin{math} \frac{1}{2}(\frac{1}{1 - \alpha}) \end{math} hits. En voor  
 Maar we verwachten dit enkel maar tot een load factor van 0.5. TODO: Extra uitleg hier.
 
 \section{Bevindingen}
 Voor het gemiddelde aantal search hits zien we dat de theoretische curve tot en met een load factor van 0.5 lijkt samen te vallen met onze bevindingen.
-Het nauwlettende oog ziet echter als we wat zouden inzoomen dat onze bevindingen lijken te oscileren rond de theoretische curve.
+Naarmate de load factor groter wordt zien we echter wel wat duidelijkere afwijkingen deze zijn niet erg groot. 
+
+\section{Wat als...}
+
+\pagebreak
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_norehash.png}
@@ -51,10 +56,8 @@ Het nauwlettende oog ziet echter als we wat zouden inzoomen dat onze bevindingen
     \space
     \centering
     \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_rehash.png}
-    \caption{Hashtabel searh hits en search misses met resize bij loadfactor groter dan 0.5 (indien niet duidelijk genoeg zie git repo)}
+    \caption{Hashtabel searh hits en search misses met resize bij loadfactor groter dan 0.5, de x-as is bewust foutief (indien niet duidelijk genoeg zie git repo)}
     \label{fig:hash_rehash}
-
 \end{figure}
 
-\section{Wat als...}
 \end{document}
