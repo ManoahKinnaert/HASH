@@ -112,7 +112,7 @@ public class Hash1 {
 
     // Export the findings to a basic temp text file for prossesing in python
     // (plotting the results using matplotlib)
-    private File exportForPy() {
+    private File exportForPy(boolean autoResize) {
         File file = extractFileLocation();
         System.out.println("[DEBUG]: Attempting export.");
         try (PrintWriter writer = new PrintWriter(file)) {
@@ -128,7 +128,9 @@ public class Hash1 {
                         m.hits,
                         m.theoreticalHits,
                         m.misses,
-                        m.theoreticalMisses);
+                        m.theoreticalMisses,
+                        autoResize
+                        );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,8 +141,8 @@ public class Hash1 {
 
     // First export the data
     // Then start the plotting service (run python script)
-    public void runPlot() {
-        File file = exportForPy();
+    public void runPlot(boolean autoResize) {
+        File file = exportForPy(autoResize);
         if (file == null)
             System.out.println("[DEBUG]: Export failed.");
         // Run the python script
@@ -172,7 +174,7 @@ public class Hash1 {
     }
 
     public void run() {
-        conduct(false);
-        runPlot();
+        conduct(true);
+        runPlot(true);
     }
 }
