@@ -81,9 +81,11 @@ public class Hash1 {
             // store the data
             measurements.add(new Measurement(alpha, measuredHit, measuredMiss, theoreticalHit, theoreticalMiss));
         }
+        System.out.println("[DEBUG]: Completed measurements.");
     }
 
     private File extractFileLocation() {
+        System.out.println("[DEBUG]: Opening 'file explorer'.");
         JFileChooser chooser = new JFileChooser();
 
         chooser.setDialogTitle("Choose where to store CSV data");
@@ -106,7 +108,7 @@ public class Hash1 {
     // (plotting the results using matplotlib)
     private File exportForPy() {
         File file = extractFileLocation();
-
+        System.out.println("[DEBUG]: Attempting export.");
         try (PrintWriter writer = new PrintWriter(file)) {
 
             writer.println("alpha,measuredHit,theoreticalHit,measuredMiss,theoreticalMiss");
@@ -134,8 +136,9 @@ public class Hash1 {
     public void runPlot() {
         File file = exportForPy();
         if (file == null)
-            System.out.println("Export failed, quitting now...");
+            System.out.println("[DEBUG]: Export failed.");
         // Run the python script
+        System.out.println("[DEBUG]: Plotting results.");
         try {
             // TODO: python3 os stuff
             String python = "python";
@@ -154,9 +157,10 @@ public class Hash1 {
                 System.out.println(line);
             }
             int exitCode = process.waitFor();
-            System.out.println("Python exited with code: " + exitCode);
+            System.out.println("[DEBUG]: Python exited with code " + exitCode);
 
         } catch (Exception e) {
+            System.out.println("[DEBUG]: Plotting failed.");
             e.printStackTrace();
         }
     }
