@@ -55,7 +55,7 @@ Dat wil zeggen we maken een nieuwe hashtabel aan die tweemaal zo groot is. We ne
 om zo in onze nieuwe hashtabel te geraken. Zoals \ref{fig:hash_rehash} illustreert zien we dan dat het aantal search hits en search misses vrij klein blijft wat de performantie verbetert. Natuurlijk kost het rehashen op zich ook wel iets maar het is zeker die kost wel waard als het aantal search hits en misses 
 in het andere geval exponentieel zou groeien. Merk op dat de punten na het rehashen bewust verkeerd zijn aangebracht op de grafiek om te illustreren dat we wel gerehashed hebben op het punt waar onze eerste hashtabel niet gerehashed zou zijn (en dus een hogere load factor zou hebben).
 
-\section{Zijn onze formules een goede benadering}
+\section{Een goede benadering?}
 De formules \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} voor het gemiddelde aantal search hits en \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}
 voor het gemiddelde aantal search misses zijn zeker goede benaderingen. Toch als we de kanttekening maken dat de loadfactor kleiner of gelijk aan 0.5 blijft. En eerlijk gezegd zelfs als de loadfactor groter dan 0.5 wordt lijken de resultaten bekomen uit de formule en het experiment niet zo ver uit elkaar te liggen.
 
