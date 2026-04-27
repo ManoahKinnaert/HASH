@@ -38,19 +38,19 @@ def plot_findings(csv_path: str):
     ax2.set_title('Measured misses')
 
     # compute variance
-    y_var_hits = abs(df['theoreticalHit'] - df['measuredHit']) / df['measuredHit']
-    y_var_misses = abs(df['theoreticalMiss'] - df['measuredMiss']) / df['measuredMiss']
+    y_err_hits = abs(df['theoreticalHit'] - df['measuredHit']) / df['measuredHit']
+    y_err_misses = abs(df['theoreticalMiss'] - df['measuredMiss']) / df['measuredMiss']
 
     # plot the variance 
-    ax3.plot(df['alpha'], y_var_hits, label='Variance')
-    ax3.set_title('Variance hits')
+    ax3.plot(df['alpha'], y_err_hits, label='Error')
+    ax3.set_title('Error hits')
     ax3.set_xlabel('Load Factor α')
-    ax3.set_ylabel('Variance')
+    ax3.set_ylabel('Error')
 
-    ax4.plot(df['alpha'], y_var_misses, label='Variance')
-    ax4.set_title('Variance misses')
+    ax4.plot(df['alpha'], y_err_misses, label='Error')
+    ax4.set_title('Error misses')
     ax4.set_xlabel('Load Factor α')
-    ax4.set_ylabel('Variance')
+    ax4.set_ylabel('Error')
     
     ax1.legend()
     ax2.legend()
