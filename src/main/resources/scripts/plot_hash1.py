@@ -20,13 +20,13 @@ def plot_findings(csv_path: str):
 
     ax1.scatter(df['alpha'], df['measuredHit'], label='Measured Hit')
     ax1.plot(df['alpha'], df['theoreticalHit'], color='blue', label='Theoretical Hit')
-    y = sum(i for i in df['theoreticalHit']) / len(df['theoreticalHit'])
-    ax1.plot(df['alpha'], [y for _ in df['theoreticalHit']], color='orange')
+    #y = sum(i for i in df['theoreticalHit']) / len(df['theoreticalHit'])
+    #ax1.plot(df['alpha'], [y for _ in df['theoreticalHit']], color='orange')
 
     ax2.scatter(df['alpha'], df['measuredMiss'], label='Measured Miss')
     ax2.plot(df['alpha'], df['theoreticalMiss'], color='blue', label='Theoretical Miss')
-    y = sum(i for i in df['theoreticalMiss']) / len(df['theoreticalMiss'])
-    ax2.plot(df['alpha'], [y for _ in df['theoreticalMiss']], color='orange')
+    #y = sum(i for i in df['theoreticalMiss']) / len(df['theoreticalMiss'])
+    #ax2.plot(df['alpha'], [y for _ in df['theoreticalMiss']], color='orange')
 
     ax1.set_xlabel('Load Factor α')
     ax2.set_xlabel('Load Factor α')
