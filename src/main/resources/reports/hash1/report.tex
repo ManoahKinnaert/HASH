@@ -39,15 +39,25 @@ Lineair geschaalde assen zouden perfect moeten volstaan om de nauwkeurigheid van
 \section{Verwachtingen}
 Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curves zouden moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
 Voor het gemiddelde aantal search hits verwachten we \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} hits. En voor het gemiddelde aantal search misses
-verwachten we \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}
-Maar we verwachten dit enkel maar tot een load factor van 0.5. TODO: Extra uitleg hier.
+verwachten we \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}.
+Maar we verwachten dit enkel maar tot een load factor van 0.5. Eens die grens van 0.5 voorbij zal de nauwkeurigheid van deze formules verminderen.
 
 \section{Bevindingen}
 Voor het gemiddelde aantal search hits zien we dat de theoretische curve tot en met een load factor van 0.5 lijkt samen te vallen met onze bevindingen.
-Naarmate de load factor groter wordt zien we echter wel wat duidelijkere afwijkingen (hoewel deze minimaal lijken te zijn). 
+Naarmate de load factor groter wordt zien we echter wel wat duidelijkere afwijkingen (hoewel deze minimaal lijken te zijn). Zoals \ref{fig:hash_norehash} laat zien, merken we een exponentiële groei in het aantal search hits en search misses naarmate 
+de load factor groter wordt. Dit is uiteraard gedrag dat we willen vermijden, maar hoe krijgen we dit voor elkaar?
 
 \section{Wat als...}
+Bij ons experiment kozen we er bewust voor om de array niet te rehashen zodat we het effect van de load factor konden waarnemen op het aantal search hits en misses. 
+We zagen dan duidelijk een drastische stijging in het aantal search hits en search misses wanneer de hashtable steeds voller en voller werd. De boodschap is duidelijk, we willen 
+het aantal search hits en search misses zo laag mogelijk houden. Dit kan bereikt worden door vanop een bepaalde load factor (in ons geval 0.5) de hashtabel groter te maken en te rehashen.
+Dat wil zeggen we maken een nieuwe hashtabel aan die tweemaal zo groot is. We nemen de sleutels uit de oude hashtabel en zetten die in onze nieuwe nieuwe hashtabel, deze gaan dan uiteraard opnieuw door een modulaire hashfunctie
+om zo in onze nieuwe hashtabel te geraken. Zoals \ref{fig:hash_rehash} illustreert zien we dan dat het aantal search hits en search misses vrij klein blijft wat de performantie verbetert. Natuurlijk kost het rehashen op zich ook wel iets maar het is zeker die kost wel waard als het aantal search hits en misses 
+in het andere geval exponentieel zou groeien. Merk op dat de punten na het rehashen bewust verkeerd zijn aangebracht op de grafiek om te illustreren dat we wel gerehashed hebben op het punt waar onze eerste hashtabel niet gerehashed zou zijn (en dus een hogere load factor zou hebben).
 
+\section{Zijn onze formules een goede benadering}
+De formules \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} voor het gemiddelde aantal search hits en \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}
+voor het gemiddelde aantal search misses zijn zeker goede benaderingen. Toch als we de kanttekening maken dat de loadfactor kleiner of gelijk aan 0.5 blijft. En eerlijk gezegd zelfs als de loadfactor groter dan 0.5 wordt lijken de resultaten bekomen uit de formule en het experiment niet zo ver uit elkaar te liggen.
 
 \pagebreak
 \begin{figure}[htbp]
