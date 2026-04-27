@@ -62,16 +62,12 @@ We meten de 'fout' hier door de absolute waarde te nemen van het verschil tussen
 Opmerkelijk is dat deze fout stijgt zoals \ref{fig:hash_error} illustreert, en al zeker wanneer de load factor groter is dan 0.5. Onder een load factor van 0.5 lijkt de fout niet zo sterk te evolueren.
 Het gebruik van de formules voor een load factor onder 0.5 ziet er dus uit als een goede benadering voor het gemiddelde aantal search hits en misses.
 
-\FloatBarrier
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../../images/hash1/chart_norehash.png}
     \caption{Hashtabel search hits en search misses zonder resize bij loadfactor groter dan 0.5}
     \label{fig:hash_norehash}
 \end{figure}
-
-\FloatBarrier
 
 \begin{figure}[htbp]
     \centering
@@ -80,15 +76,11 @@ Het gebruik van de formules voor een load factor onder 0.5 ziet er dus uit als e
     \label{fig:hash_rehash}
 \end{figure}
 
-\FloatBarrier
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../../images/hash1/chart_error_norehash.png}
     \caption{Fout voor hashtabel search hits en search misses zonder resize}
     \label{fig:hash_error}
 \end{figure}
-
-\FloatBarrier
 
 \end{document}
