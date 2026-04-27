@@ -58,6 +58,7 @@ in het andere geval exponentieel zou groeien. Merk op dat de punten na het rehas
 \section{Een goede benadering?}
 De formules \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} voor het gemiddelde aantal search hits en \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}
 voor het gemiddelde aantal search misses zijn zeker goede benaderingen. Toch als we de kanttekening maken dat de loadfactor kleiner of gelijk aan 0.5 blijft. En eerlijk gezegd zelfs als de loadfactor groter dan 0.5 wordt lijken de resultaten bekomen uit de formule en het experiment niet zo ver uit elkaar te liggen.
+Maar de fout stijgt zeker zoals \ref{fig:hash_error} illustreert.
 
 \pagebreak
 \begin{figure}[htbp]
@@ -70,5 +71,10 @@ voor het gemiddelde aantal search misses zijn zeker goede benaderingen. Toch als
     \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_rehash.png}
     \caption{Hashtabel searh hits en search misses met resize bij loadfactor groter dan 0.5, de x-as is bewust foutief (indien niet duidelijk genoeg zie git repo)}
     \label{fig:hash_rehash}
+    \pagebreak
+    \centering
+    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_error_norehash.png}
+    \caption{Fout voor hashtabel searh hits en search misses zonder resize (indien niet duidelijk genoeg zie git repo)}
+    \label{fig:hash_error}
 \end{figure}
 \end{document}

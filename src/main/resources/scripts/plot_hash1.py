@@ -39,9 +39,9 @@ def plot_findings(csv_path: str):
 
     # compute error
     y_err_hits = abs(df['theoreticalHit'] - df['measuredHit'])
-    y_err_hits_avg = [sum(y_err_hits) / len(y_err_hits) for _ in y_err_hits]
+    #y_err_hits_avg = [sum(y_err_hits) / len(y_err_hits) for _ in y_err_hits]
     y_err_misses = abs(df['theoreticalMiss'] - df['measuredMiss'])
-    y_err_misses_avg = [sum(y_err_misses) / len(y_err_misses) for _ in y_err_misses]
+    #y_err_misses_avg = [sum(y_err_misses) / len(y_err_misses) for _ in y_err_misses]
 
     # plot the error for the hits
     ax3.plot(df['alpha'], y_err_hits, label='Error')
