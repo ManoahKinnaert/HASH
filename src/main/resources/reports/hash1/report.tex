@@ -2,6 +2,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{placeins}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -37,23 +38,22 @@ Voor het weergeven van de data in de grafieken is er gekozen voor lineair gescha
 Lineair geschaalde assen zouden perfect moeten volstaan om de nauwkeurigheid van beide formules te valideren en eventuele afwijkingen die zich zouden voordoen als de load factor groter en groter wordt waar te nemen.
 
 \section{Verwachtingen}
-Zoals eigenlijk eerder al aangehaald is verwachten we wel dat de theoretische curves zouden moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
+Zoals eigenlijk eerder al aangehaald, verwachten we wel dat de theoretische curves zouden moeten samenvallen met onze meetpunten (of toch dicht in de buurt liggen). 
 Voor het gemiddelde aantal search hits verwachten we \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} hits. En voor het gemiddelde aantal search misses
 verwachten we \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}.
-Maar we verwachten dit enkel maar tot een load factor van 0.5. Eens die grens van 0.5 voorbij zal de nauwkeurigheid van deze formules verminderen.
+Maar we verwachten dit enkel maar tot een load factor van 0.5. Eens die voorbij die 'grens' van 0.5 zouden deze formules minder nauwkeurig moeten worden.
 
 \section{Bevindingen}
 Voor het gemiddelde aantal search hits zien we dat de theoretische curve tot en met een load factor van 0.5 lijkt samen te vallen met onze bevindingen.
-Naarmate de load factor groter wordt zien we echter wel wat duidelijkere afwijkingen (hoewel deze minimaal lijken te zijn). Zoals \ref{fig:hash_norehash} laat zien, merken we een exponentiële groei in het aantal search hits en search misses naarmate 
+Naarmate de load factor groter wordt zien we echter wel visueel wat duidelijkere afwijkingen (hoewel deze minimaal lijken te zijn). Zoals \ref{fig:hash_norehash} laat zien, merken we een zeer grote stijging in het aantal search hits en search misses naarmate 
 de load factor groter wordt. Dit is uiteraard gedrag dat we willen vermijden, maar hoe krijgen we dit voor elkaar?
 
 \section{Wat als...}
 Bij ons experiment kozen we er bewust voor om de array niet te rehashen zodat we het effect van de load factor konden waarnemen op het aantal search hits en misses. 
 We zagen dan duidelijk een drastische stijging in het aantal search hits en search misses wanneer de hashtable steeds voller en voller werd. De boodschap is duidelijk, we willen 
 het aantal search hits en search misses zo laag mogelijk houden. Dit kan bereikt worden door vanop een bepaalde load factor (in ons geval 0.5) de hashtabel groter te maken en te rehashen.
-Dat wil zeggen we maken een nieuwe hashtabel aan die tweemaal zo groot is. We nemen de sleutels uit de oude hashtabel en zetten die in onze nieuwe nieuwe hashtabel, deze gaan dan uiteraard opnieuw door een modulaire hashfunctie
-om zo in onze nieuwe hashtabel te geraken. Zoals \ref{fig:hash_rehash} illustreert zien we dan dat het aantal search hits en search misses vrij klein blijft wat de performantie verbetert. Natuurlijk kost het rehashen op zich ook wel iets maar het is zeker die kost wel waard als het aantal search hits en misses 
-in het andere geval exponentieel zou groeien. Merk op dat de punten na het rehashen bewust verkeerd zijn aangebracht op de grafiek om te illustreren dat we wel gerehashed hebben op het punt waar onze eerste hashtabel niet gerehashed zou zijn (en dus een hogere load factor zou hebben).
+Dat wil zeggen we maken een nieuwe hashtabel aan die tweemaal zo groot is. We nemen de sleutels uit de oude hashtabel en zetten die in onze nieuwe nieuwe hashtabel, deze worden dan één voor één opnieuw gehashed. Zoals \ref{fig:hash_rehash} illustreert zien we dan dat het aantal search hits en search misses vrij klein blijft wat de performantie verbetert. Natuurlijk kost het rehashen op zich ook wel iets maar het is zeker die kost wel waard als het aantal search hits en misses 
+in het andere geval zo sterk zou groeien. Merk op dat de punten na het rehashen bewust verkeerd zijn aangebracht op de grafiek om te illustreren dat we wel gerehashed hebben op het punt waar onze eerste hashtabel niet gerehashed zou zijn (en dus een hogere load factor zou hebben).
 
 \section{Een goede benadering?}
 De formules \begin{math} \frac{1}{2}\frac{1}{1 - \alpha} \end{math} voor het gemiddelde aantal search hits en \begin{math} \frac{1}{2}\frac{1}{(1 - \alpha)^2} \end{math}
@@ -62,21 +62,33 @@ We meten de fout hier door de absolute waarde te nemen van het verschil tussen d
 Opmerkelijk is dat deze fout stijgt zoals \ref{fig:hash_error} illustreert, en al zeker wanneer de load factor groter is dan 0.5. Onder een load factor van 0.5 lijkt de fout niet zo sterk te evolueren.
 Het gebruik van de formules voor een load factor onder 0.5 ziet er dus uit als een goede benadering voor het gemiddelde aantal search hits en misses.
 
-\pagebreak
+\FloatBarrier
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_norehash.png}
-    \caption{Hashtabel searh hits en search misses zonder resize bij loadfactor groter dan 0.5 (indien niet duidelijk genoeg zie git repo)}
+    \includegraphics[width=\textwidth]{../../images/hash1/chart_norehash.png}
+    \caption{Hashtabel search hits en search misses zonder resize bij loadfactor groter dan 0.5}
     \label{fig:hash_norehash}
-    \space
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_rehash.png}
-    \caption{Hashtabel searh hits en search misses met resize bij loadfactor groter dan 0.5, de x-as is bewust foutief (indien niet duidelijk genoeg zie git repo)}
+    \includegraphics[width=\textwidth]{../../images/hash1/chart_rehash.png}
+    \caption{Hashtabel search hits en search misses met resize bij loadfactor groter dan 0.5}
     \label{fig:hash_rehash}
-    \pagebreak
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=1.0\textwidth]{../../images/hash1/chart_error_norehash.png}
-    \caption{Fout voor hashtabel searh hits en search misses zonder resize (indien niet duidelijk genoeg zie git repo)}
+    \includegraphics[width=\textwidth]{../../images/hash1/chart_error_norehash.png}
+    \caption{Fout voor hashtabel search hits en search misses zonder resize}
     \label{fig:hash_error}
 \end{figure}
+
+\FloatBarrier
+
 \end{document}
