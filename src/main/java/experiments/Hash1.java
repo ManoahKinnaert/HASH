@@ -177,6 +177,6 @@ public class Hash1 {
     public void run() {
         String option = InputUtil.getString("Do you want autoresize (y/n): ");
         conduct(option.toLowerCase() == "y");
-        runPlot(option.toLowerCase() == "n");
+        runPlot(option.toLowerCase() == "y");
     }
 }
