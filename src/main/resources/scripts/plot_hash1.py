@@ -4,6 +4,7 @@ This file is for plotting the findings of experiment Hash 1 using the python mat
 import matplotlib.pyplot as plt 
 import pandas as pd
 import sys  
+import math 
 
 def check_input_file():
     if len(sys.argv) < 2:
@@ -16,7 +17,7 @@ def plot_findings(csv_path: str):
     df = pd.read_csv(csv_path)
 
     plt.style.use("ggplot")
-    fig, (ax1, ax2) = plt.subplots(1, 2)
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
 
     ax1.scatter(df['alpha'], df['measuredHit'], label='Measured Hit')
     ax1.plot(df['alpha'], df['theoreticalHit'], color='blue', label='Theoretical Hit')
@@ -35,9 +36,26 @@ def plot_findings(csv_path: str):
 
     ax1.set_title('Measured hits')
     ax2.set_title('Measured misses')
+
+    # compute variance
+    y_var_hits = abs(df['theoreticalHit'] - df['measuredHit']) / df['measuredHit']
+    y_var_misses = abs(df['theoreticalMiss'] - df['measuredMiss']) / df['measuredMiss']
+
+    # plot the variance 
+    ax3.plot(df['alpha'], y_var_hits, label='Variance')
+    ax3.set_title('Variance hits')
+    ax3.set_xlabel('Load Factor α')
+    ax3.set_ylabel('Variance')
+
+    ax4.plot(df['alpha'], y_var_misses, label='Variance')
+    ax4.set_title('Variance misses')
+    ax4.set_xlabel('Load Factor α')
+    ax4.set_ylabel('Variance')
     
     ax1.legend()
     ax2.legend()
+    ax3.legend()
+    ax4.legend()
 
     plt.show()
 
