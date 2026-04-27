@@ -37,17 +37,24 @@ def plot_findings(csv_path: str):
     ax1.set_title('Measured hits')
     ax2.set_title('Measured misses')
 
-    # compute variance
-    y_err_hits = abs(df['theoreticalHit'] - df['measuredHit']) / df['measuredHit']
-    y_err_misses = abs(df['theoreticalMiss'] - df['measuredMiss']) / df['measuredMiss']
+    # compute error
+    y_err_hits = abs(df['theoreticalHit'] - df['measuredHit'])
+    y_err_hits_avg = [sum(y_err_hits) / len(y_err_hits) for _ in y_err_hits]
+    y_err_misses = abs(df['theoreticalMiss'] - df['measuredMiss'])
+    y_err_misses_avg = [sum(y_err_misses) / len(y_err_misses) for _ in y_err_misses]
 
-    # plot the variance 
+    # plot the error for the hits
     ax3.plot(df['alpha'], y_err_hits, label='Error')
+    # plot the average error
+    #ax3.plot(df['alpha'], y_err_hits_avg, label='Average Error')
     ax3.set_title('Error hits')
     ax3.set_xlabel('Load Factor α')
     ax3.set_ylabel('Error')
 
+    # plot the error for the misses
     ax4.plot(df['alpha'], y_err_misses, label='Error')
+    # plot the average error
+    #ax4.plot(df['alpha'], y_err_misses_avg, label='Average Error')
     ax4.set_title('Error misses')
     ax4.set_xlabel('Load Factor α')
     ax4.set_ylabel('Error')
