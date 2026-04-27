@@ -38,9 +38,9 @@ def plot_findings(csv_path: str):
     ax2.set_title('Measured misses')
 
     # compute error
-    y_err_hits = abs(df['theoreticalHit'] - df['measuredHit'])
+    y_err_hits = abs(df['measuredHit'] - df['theoreticalHit'])
     #y_err_hits_avg = [sum(y_err_hits) / len(y_err_hits) for _ in y_err_hits]
-    y_err_misses = abs(df['theoreticalMiss'] - df['measuredMiss'])
+    y_err_misses = abs(df['measuredMiss'] - df['theoreticalMiss'])
     #y_err_misses_avg = [sum(y_err_misses) / len(y_err_misses) for _ in y_err_misses]
 
     # plot the error for the hits
